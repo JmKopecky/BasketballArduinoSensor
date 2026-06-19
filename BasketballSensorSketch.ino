@@ -13,7 +13,7 @@ Programmed by Joseph Kopecky
 //define constants for later use
 #define DEFAULT_BUTTON_COOLDOWN 100 //how long between button press before it can be re-pressed, preventing accidental double-clicks
 #define SECONDS_TO_MILLIS 1000
-#define HUNDREDS_TO_MILLIS 10
+#define TENTHS_TO_MILLIS 100
 #define MAX_TIMER 99990 //the maximum value on the timer before it overflows to zero. 99 seconds, 99 hundredths of a second
 #define BALL_DISTANCE_THRESHOLD_CM 20 //the distance from the UV distance sensor that the ball must be to trigger as taken
 #define BUZZER_DURATION 1000 //how long the buzzer plays, in milliseconds
@@ -22,7 +22,7 @@ Programmed by Joseph Kopecky
 #define DISTANCE_SENSOR_PIN 19
 #define BUZZER_PIN 6
 #define SECOND_BUTTON_PIN 5
-#define HUNDREDTH_BUTTON_PIN 4
+#define TENTHS_BUTTON_PIN 4
 #define DISPLAY_CLOCK_PIN 2
 #define DISPLAY_DATAIO_PIN 3
 
@@ -49,7 +49,7 @@ void setup() {
   
   //setup buttons
   pinMode(SECOND_BUTTON_PIN, INPUT);
-  pinMode(HUNDREDTH_BUTTON_PIN, INPUT);
+  pinMode(TENTHS_BUTTON_PIN, INPUT);
 
   //setup buzzer
   pinMode(BUZZER_PIN, OUTPUT);
@@ -111,11 +111,11 @@ void listenForButtons(unsigned short deltaTime) {
 
   //get pressed state
   bool secondButtonPressed = isButtonPressed(SECOND_BUTTON_PIN);
-  bool hundredthButtonPressed = isButtonPressed(HUNDREDTH_BUTTON_PIN);
+  bool tenthButtonPressed = isButtonPressed(TENTHS_BUTTON_PIN);
 
   //update for hundredths button
-  if (buttonCooldown == 0 && hundredthButtonPressed) {
-    setTimerLength += HUNDREDS_TO_MILLIS;
+  if (buttonCooldown == 0 && tenthButtonPressed) {
+    setTimerLength += TENTHS_TO_MILLIS;
   }
 
   //update for seconds button
@@ -129,7 +129,7 @@ void listenForButtons(unsigned short deltaTime) {
   }
 
   //start cooldown if either button was pressed
-  if (secondButtonPressed || hundredthButtonPressed) {
+  if (secondButtonPressed || tenthButtonPressed) {
     buttonCooldown = DEFAULT_BUTTON_COOLDOWN;
   }
 }
