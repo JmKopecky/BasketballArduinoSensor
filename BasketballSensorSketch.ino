@@ -1,7 +1,7 @@
 /*
 Arduino software to detect a ball within range and start a countdown timer when it is removed, 
 buzzing once the timer elapses. Said timer can be configured via the device's buttons, adding 
-one second or one hundredth of a second depending on which is pressed. Using the reset button
+one second or one tenth of a second depending on which is pressed. Using the reset button
 (or power cycling the device) resets this timer to 0. 
 
 Programmed by Joseph Kopecky
